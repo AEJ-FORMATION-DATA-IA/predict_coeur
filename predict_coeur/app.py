@@ -19,8 +19,11 @@ def predict():
     prediction = model.predict(final_features)
 
     output = round(prediction[0], 2)
-
-    return render_template('index.html', prediction_text='La  reponse de votre requete {}'.format(output))
+    if output == 0:
+        output='Vous etes en bonne sante'
+    else:
+        output='Vous avez une maladie cardiaque'
+    return render_template('index.html', prediction_text=' {}'.format(output))
 
 if __name__ == "__main__":
     app.run(debug=True)
